@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   PaisaPilot — Global Design System
+   ============================================================ */
+
+@layer base {
+  :root {
+    --color-bg: #0B1020;
+    --color-surface: #14213A;
+    --color-border: #1E3A5F;
+    --color-text: #F1F5F9;
+    --color-muted: #94A3B8;
+    --color-emerald: #10B981;
+    --color-lime: #C5F467;
+    --color-violet: #7C3AED;
+    --color-danger: #EF4444;
+    --color-warning: #F59E0B;
+
+    color-scheme: dark;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  #app {
+    min-height: 100dvh;
+  }
+
+  /* Scrollbars */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E3A5F;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2A4F7A;
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-emerald);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(16, 185, 129, 0.3);
+    color: #F1F5F9;
+  }
+}
+
+@layer components {
+  /* ---- Cards ---- */
+  .card {
+    @apply bg-navy-700 rounded-2xl border border-navy-500 shadow-card;
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+  }
+
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    @apply shadow-card-hover -translate-y-0.5;
+  }
+
+  /* ---- Buttons ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-semibold
+           transition-all duration-150 focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-emerald disabled:opacity-40 disabled:cursor-not-allowed
+           select-none;
+  }
+  .btn-primary {
+    @apply btn bg-emerald text-navy-900 hover:bg-emerald-light active:scale-95 px-4 py-2 text-sm;
+  }
+  .btn-secondary {
+    @apply btn bg-navy-600 text-slate-200 border border-navy-500 hover:bg-navy-500
+           active:scale-95 px-4 py-2 text-sm;
+  }
+  .btn-danger {
+    @apply btn bg-red-500/20 text-red-400 border border-red-500/30 hover:bg-red-500/30
+           active:scale-95 px-4 py-2 text-sm;
+  }
+  .btn-ghost {
+    @apply btn text-muted hover:text-slate-200 hover:bg-navy-600/50 px-3 py-1.5 text-sm;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  /* ---- Inputs ---- */
+  .input {
+    @apply w-full bg-navy-800 border border-navy-500 rounded-xl px-3 py-2 text-sm
+           text-slate-200 placeholder-muted
+           focus:outline-none focus:border-emerald focus:ring-1 focus:ring-emerald/30
+           transition-colors duration-150;
+  }
+
+  .input-label {
+    @apply block text-xs font-medium text-muted mb-1.5 uppercase tracking-wide;
+  }
+
+  /* ---- Badges ---- */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-green  { @apply badge bg-emerald/20 text-emerald; }
+  .badge-red    { @apply badge bg-red-500/20 text-red-400; }
+  .badge-yellow { @apply badge bg-yellow-500/20 text-yellow-400; }
+  .badge-violet { @apply badge bg-violet/20 text-violet-light; }
+  .badge-lime   { @apply badge bg-lime/20 text-lime; }
+
+  /* ---- Metric number ---- */
+  .metric-value {
+    @apply text-2xl font-bold tracking-tight tabular-nums;
+  }
+  .metric-label {
+    @apply text-xs text-muted uppercase tracking-widest font-medium;
+  }
+
+  /* ---- Progress bar ---- */
+  .progress-track {
+    @apply h-1.5 rounded-full bg-navy-500 overflow-hidden;
+  }
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+  }
+
+  /* ---- Section heading ---- */
+  .section-title {
+    @apply text-base font-semibold text-slate-200 flex items-center gap-2;
+  }
+  .section-subtitle {
+    @apply text-xs text-muted mt-0.5;
+  }
+
+  /* ---- Divider ---- */
+  .divider {
+    @apply border-t border-navy-500 my-4;
+  }
+
+  /* ---- Glass surface ---- */
+  .glass {
+    @apply bg-navy-700/60 backdrop-blur-md border border-navy-500/60;
+  }
+}
+
+@layer utilities {
+  /* Number animation */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Perspective for 3D cards */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Ambient glow */
+  .glow-emerald {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.15), 0 0 60px rgba(16, 185, 129, 0.05);
+  }
+  .glow-violet {
+    box-shadow: 0 0 30px rgba(124, 58, 237, 0.15), 0 0 60px rgba(124, 58, 237, 0.05);
+  }
+  .glow-lime {
+    box-shadow: 0 0 30px rgba(197, 244, 103, 0.1), 0 0 60px rgba(197, 244, 103, 0.04);
+  }
+
+  /* Text gradient */
+  .text-gradient-emerald {
+    background: linear-gradient(135deg, #10B981 0%, #C5F467 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-violet {
+    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hide scrollbar visually but keep functionality */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
